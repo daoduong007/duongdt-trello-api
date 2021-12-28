@@ -1,0 +1,31 @@
+{
+  "name": "duongdt-trello-api",
+  "version": "1.0.0",
+  "description": "APIS for trello clone web",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "eslint": "eslint src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daoduong007/duongdt-trello-api.git"
+  },
+  "keywords": [],
+  "author": "duongdt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daoduong007/duongdt-trello-api/issues"
+  },
+  "homepage": "https://github.com/daoduong007/duongdt-trello-api#readme",
+  "dependencies": {
+    "expres": "^0.0.5",
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/eslint-parser": "^7.16.5",
+    "eslint": "^8.5.0"
+  }
+}

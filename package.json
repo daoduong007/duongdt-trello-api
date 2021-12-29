@@ -3,10 +3,15 @@
   "version": "1.0.0",
   "description": "APIS for trello clone web",
   "main": "src/server.js",
-  "type": "module",
   "scripts": {
+    "start": "nodemon ./server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "eslint": "eslint src"
+    "eslint": "eslint src",
+    "clean": "rm -rf build && mkdir build",
+    "build-babel": "babel ./src -d ./build/src",
+    "build": "npm run clean && npm run build-babel",
+    "production": "npm run build && node ./build/src/server.js",
+    "dev": "nodemon --exec ./node_modules/.bin/babel-node ./src/server.js"
   },
   "repository": {
     "type": "git",
@@ -20,12 +25,19 @@
   },
   "homepage": "https://github.com/daoduong007/duongdt-trello-api#readme",
   "dependencies": {
+    "@babel/runtime": "^7.16.5",
     "expres": "^0.0.5",
     "express": "^4.17.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.5",
     "@babel/eslint-parser": "^7.16.5",
-    "eslint": "^8.5.0"
+    "@babel/node": "^7.16.5",
+    "@babel/plugin-transform-runtime": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "eslint": "^8.5.0",
+    "nodemon": "^2.0.15"
   }
 }

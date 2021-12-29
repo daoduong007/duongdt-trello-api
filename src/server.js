@@ -1,15 +1,13 @@
 import express from 'express';
-import { mapOder } from '*/utilities/sorts';
+import { connectDB } from './config/mongodb';
+import { env } from '*/config/environment';
 
 const app = express();
 
-const hostname = 'localhost';
-const port = 8017;
+connectDB().catch(console.log);
 
 app.get('/', (req, res) => {
   res.end('<h1>Hello world</h1><hr/>');
 });
 
-app.listen(port, hostname, () => {
-  console.log(`hello cac ban pt 123, at ${hostname}:${port}`);
-});
+app.listen(env.PORT, env.HOST, () => {});

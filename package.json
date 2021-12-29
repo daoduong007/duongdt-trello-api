@@ -26,8 +26,10 @@
   "homepage": "https://github.com/daoduong007/duongdt-trello-api#readme",
   "dependencies": {
     "@babel/runtime": "^7.16.5",
+    "dotenv": "^10.0.0",
     "expres": "^0.0.5",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "mongodb": "^4.2.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.16.0",

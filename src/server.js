@@ -2,16 +2,15 @@ import express from 'express';
 import { connectDB } from './config/mongodb';
 import { env } from '*/config/environment';
 
-connectDB().then(
-  () => {
-    console.log('Connected successfully to database server!');
-    bootServer();
-  },
-  (error) => {
+connectDB()
+  .then(() =>
+    console.log('connected successfully to database server'),
+  )
+  .then(() => bootServer())
+  .catch((error) => {
     console.error(error);
     process.exit(1);
-  },
-);
+  });
 
 const bootServer = () => {
   const app = express();

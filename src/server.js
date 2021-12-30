@@ -1,6 +1,7 @@
 import express from 'express';
 import { connectDB } from './config/mongodb';
 import { env } from '*/config/environment';
+import { apiV1 } from '*/routers/v1';
 
 connectDB()
   .then(() =>
@@ -15,9 +16,10 @@ connectDB()
 const bootServer = () => {
   const app = express();
 
-  app.get('/test', async (req, res) => {
-    res.end('<h1>Hello world</h1><hr/>');
-  });
+  // Enable req.body data
+  app.use(express.json());
+
+  app.use('/v1', apiV1);
 
   app.listen(env.APP_PORT, env.APP_HOST, () => {
     console.log(`${env.APP_HOST}: ${env.APP_PORT}`);

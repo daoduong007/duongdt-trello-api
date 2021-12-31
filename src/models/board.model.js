@@ -4,7 +4,7 @@ import { getDB } from '*/config/mongodb';
 //define Board collection
 const boardCollectionName = 'boards';
 const boardCollectionSchema = Joi.object({
-  title: Joi.string().required().min(3).max(20),
+  title: Joi.string().required().min(3).max(20).trim(),
   columnOder: Joi.array().items(Joi.string()).default([]),
   createdAt: Joi.date().timestamp().default(Date.now()),
   updatedAt: Joi.date().timestamp().default(null),
@@ -25,7 +25,7 @@ const createNew = async (data) => {
       .insertOne(value);
     return result;
   } catch (error) {
-    throw Error(error);
+    throw new Error(error);
   }
 };
 

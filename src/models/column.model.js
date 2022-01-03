@@ -20,6 +20,17 @@ const validateSchema = async (data) => {
   });
 };
 
+const findOneById = async (id) => {
+  try {
+    const result = await getDB()
+      .collection(columnCollectionName)
+      .findOne({ _id: ObjectId(id) });
+    return result;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 const createNew = async (data) => {
   try {
     const validatedValue = await validateSchema(data);
@@ -48,7 +59,7 @@ const pushCardOrder = async (columnId, cardId) => {
       .findOneAndUpdate(
         { _id: ObjectId(columnId) },
         { $push: { cardOder: cardId } },
-        { returnNewDocument: true },
+        { returnDocument: 'after' },
       );
 
     return result;
@@ -64,7 +75,7 @@ const update = async (id, data) => {
       .findOneAndUpdate(
         { _id: ObjectId(id) },
         { $set: data },
-        { returnNewDocument: true },
+        { returnDocument: 'after' },
       );
 
     return result.value;
@@ -78,4 +89,5 @@ export const ColumnModel = {
   update,
   pushCardOrder,
   columnCollectionName,
+  findOneById,
 };

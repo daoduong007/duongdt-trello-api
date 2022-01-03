@@ -20,6 +20,17 @@ const validateSchema = async (data) => {
   });
 };
 
+const findOneById = async (id) => {
+  try {
+    const result = await getDB()
+      .collection(cardCollectionName)
+      .findOne({ _id: ObjectId(id) });
+    return result;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 const createNew = async (data) => {
   try {
     const validatedValue = await validateSchema(data);
@@ -37,4 +48,8 @@ const createNew = async (data) => {
   }
 };
 
-export const CardModel = { createNew, cardCollectionName };
+export const CardModel = {
+  createNew,
+  cardCollectionName,
+  findOneById,
+};

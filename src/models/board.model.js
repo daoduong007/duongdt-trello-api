@@ -20,6 +20,17 @@ const validateSchema = async (data) => {
   });
 };
 
+const findOneById = async (id) => {
+  try {
+    const result = await getDB()
+      .collection(boardCollectionName)
+      .findOne({ _id: ObjectId(id) });
+    return result;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 const createNew = async (data) => {
   try {
     const value = await validateSchema(data);
@@ -43,7 +54,7 @@ const pushColumnOrder = async (boardId, columnId) => {
       .findOneAndUpdate(
         { _id: ObjectId(boardId) },
         { $push: { columnOder: columnId } },
-        { returnNewDocument: true },
+        { returnDocument: 'after' },
       );
 
     return result;
@@ -87,4 +98,5 @@ export const BoardModel = {
   createNew,
   getFullBoard,
   pushColumnOrder,
+  findOneById,
 };

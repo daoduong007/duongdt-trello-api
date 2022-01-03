@@ -3,16 +3,17 @@ import { ColumnModel } from '*/models/column.model';
 
 const createNew = async (data) => {
   try {
-    const updateData = await { ...data };
-
-    const newColumn = await CardModel.createNew(data);
-
-    const updatedBoard = await ColumnModel.pushCardOrder(
-      updateData.columnId.toString(),
-      newColumn.insertedId.toString(),
+    const createdCard = await CardModel.createNew(data);
+    const getNewCard = await CardModel.findOneById(
+      createdCard.insertedId.toString(),
     );
 
-    return updatedBoard;
+    await ColumnModel.pushCardOrder(
+      getNewCard.columnId.toString(),
+      createdCard._id.toString(),
+    );
+
+    return getNewCard;
   } catch (error) {
     throw new Error(error);
   }

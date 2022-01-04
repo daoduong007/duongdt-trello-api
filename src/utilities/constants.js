@@ -8,5 +8,5 @@ export const HttpStatusCode = {
 
 export const WHITELIST_DOMAINS = [
   'http://localhost:3000',
-  'https://trello-duongdt-web.web.app/',
+  'https://trello-duongdt-web.web.app',
 ];

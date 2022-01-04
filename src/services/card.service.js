@@ -9,8 +9,9 @@ const createNew = async (data) => {
     );
 
     await ColumnModel.pushCardOrder(
+      // console.log('getNewCard.columnId:', getNewCard.columnId),
       getNewCard.columnId.toString(),
-      createdCard._id.toString(),
+      getNewCard._id.toString(),
     );
 
     return getNewCard;

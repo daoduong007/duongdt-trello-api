@@ -42,6 +42,27 @@ const createNew = async (data) => {
     const result = await getDB()
       .collection(cardCollectionName)
       .insertOne(insertValue);
+
+    return result;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+/**
+ *
+ * @param {Array of string card id} ids
+ */
+const deleteMany = async (ids) => {
+  try {
+    const transformIds = ids.map((item) => ObjectId(item));
+    const result = await getDB()
+      .collection(cardCollectionName)
+      .updateMany(
+        { _id: { $in: transformIds } },
+        { $set: { _destroy: true } },
+      );
+
     return result;
   } catch (error) {
     throw new Error(error);
@@ -52,4 +73,5 @@ export const CardModel = {
   createNew,
   cardCollectionName,
   findOneById,
+  deleteMany,
 };
